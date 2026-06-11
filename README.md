@@ -27,7 +27,14 @@ A machine learning model to predict passenger survival on the Titanic, built for
 - **Train/validation split:** 80/20
 - **Validation accuracy:** ~81%
 
-## Notebook Structure
+## Files
+
+| File | Description |
+|------|-------------|
+| `model.ipynb` | Data loading, preprocessing, model training and prediction |
+| `visualisations.ipynb` | Visual analysis of the Titanic dataset |
+
+## model.ipynb Structure
 
 | Cell | Description |
 |------|-------------|
@@ -35,13 +42,20 @@ A machine learning model to predict passenger survival on the Titanic, built for
 | 2 | Impute missing values, encode categorical features |
 | 3 | Train model and evaluate on validation set |
 | 4 | Preprocess test data, predict, save `submission.csv` |
-| 5 | Visualise deaths by age and sex |
+
+## visualisations.ipynb Structure
+
+| Cell | Description |
+|------|-------------|
+| 1 | Load and preprocess `train.csv` |
+| 2 | Deaths by age and sex — histogram split by Male/Female |
 
 ## Usage
 
-1. Ensure `train.csv` and `test.csv` are in the same directory as `model.ipynb`
-2. Run all cells top to bottom
-3. Upload the generated `submission.csv` to Kaggle
+1. Ensure `train.csv` and `test.csv` are in the same directory as the notebooks
+2. Run `model.ipynb` top to bottom to train the model and generate `submission.csv`
+3. Run `visualisations.ipynb` independently to explore the data visually
+4. Upload the generated `submission.csv` to Kaggle
 
 ## Requirements
 
