@@ -2,6 +2,12 @@
 
 A machine learning model to predict passenger survival on the Titanic, built for the [Kaggle Titanic competition](https://www.kaggle.com/competitions/titanic).
 
+## Results
+
+| Submission | Model | Params | Public Score |
+|------------|-------|--------|--------------|
+| 1 | SVM | `C=1, kernel=rbf, gamma=scale` | **0.78229** |
+
 ## Dataset
 
 | File | Description |
