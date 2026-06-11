@@ -64,6 +64,14 @@ Four models are trained and tuned via `GridSearchCV` (5-fold CV). The best perfo
 |------|-------------|
 | 1 | Load and preprocess `train.csv` |
 | 2 | Deaths by age and sex — histogram split by Male/Female |
+| 3 | Survival rate by passenger class — bar chart with percentage labels |
+| 4 | Survival rate by sex & class — annotated heatmap |
+| 5 | Age distribution: survived vs died — overlapping KDE |
+| 6 | Fare distribution by survival — violin plot (capped at 99th percentile) |
+| 7 | Family size vs survival rate — bar chart (engineered feature: SibSp + Parch) |
+| 8 | Embarkation port & survival — stacked bar (C/Q/S with full port names) |
+| 9 | Feature correlation — annotated Pearson heatmap (lower triangle) |
+| 10 | Fare vs age by survival — scatter plot |
 
 ## Usage
 
