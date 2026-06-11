@@ -21,11 +21,15 @@ A machine learning model to predict passenger survival on the Titanic, built for
 | `Fare` | Ticket fare |
 | `Embarked` | Port of embarkation (C=0, Q=1, S=2) |
 
-## Model
+## Models
 
-- **Algorithm:** Random Forest Classifier (100 estimators)
-- **Train/validation split:** 80/20
-- **Validation accuracy:** ~81%
+Three models are trained and tuned via `GridSearchCV` (5-fold CV). The best performer is automatically selected for the final submission.
+
+| Model | Tuned Parameters |
+|-------|-----------------|
+| Random Forest | `n_estimators`, `max_depth`, `min_samples_split`, `min_samples_leaf`, `max_features` |
+| Logistic Regression | `C`, `penalty`, `solver` |
+| XGBoost | `n_estimators`, `max_depth`, `learning_rate`, `subsample`, `colsample_bytree` |
 
 ## Files
 
@@ -40,8 +44,11 @@ A machine learning model to predict passenger survival on the Titanic, built for
 |------|-------------|
 | 1 | Load `train.csv` and `test.csv` |
 | 2 | Impute missing values, encode categorical features |
-| 3 | Train model and evaluate on validation set |
-| 4 | Preprocess test data, predict, save `submission.csv` |
+| 3 | Baseline Random Forest — 80/20 train/val split |
+| 4 | Hyperparameter tuning — Random Forest (162 combinations) |
+| 5 | Hyperparameter tuning — Logistic Regression (18 combinations) |
+| 6 | Hyperparameter tuning — XGBoost (108 combinations) |
+| 7 | Preprocess test data, predict with best model, save `submission.csv` |
 
 ## visualisations.ipynb Structure
 
@@ -53,15 +60,16 @@ A machine learning model to predict passenger survival on the Titanic, built for
 ## Usage
 
 1. Ensure `train.csv` and `test.csv` are in the same directory as the notebooks
-2. Run `model.ipynb` top to bottom to train the model and generate `submission.csv`
-3. Run `visualisations.ipynb` independently to explore the data visually
-4. Upload the generated `submission.csv` to Kaggle
+2. Run `model.ipynb` top to bottom — all three models are tuned and the best is selected automatically
+3. Upload the generated `submission.csv` to Kaggle
+4. Run `visualisations.ipynb` independently to explore the data visually
 
 ## Requirements
 
 ```
 pandas
 scikit-learn
+xgboost
 seaborn
 matplotlib
 ```
