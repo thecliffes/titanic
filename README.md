@@ -4,9 +4,14 @@ A machine learning model to predict passenger survival on the Titanic, built for
 
 ## Results
 
-| Submission | Model | Params | Public Score |
-|------------|-------|--------|--------------|
-| 1 | SVM | `C=1, kernel=rbf, gamma=scale` | **0.78229** |
+| # | Model | Params | Features | Public Score |
+|---|-------|--------|----------|--------------|
+| 1 | SVM | `C=1, kernel=rbf, gamma=scale` | Original 7 | **0.78229** |
+| 2 | Random Forest | `max_depth=None, max_features=sqrt, min_samples_leaf=1, min_samples_split=10, n_estimators=300` | Original 7 | **0.77511** |
+| 3 | Random Forest | val-score selection | + Title, FamilySize, IsAlone | **0.77511** |
+| 4 | XGBoost | `colsample_bytree=0.8, learning_rate=0.1, max_depth=3, n_estimators=100, subsample=1.0` | + Deck, FareBin | **0.76315** |
+| 5 | Random Forest | `colsample_bytree=0.8, learning_rate=0.01, max_depth=3, n_estimators=300, subsample=1.0` | + Title, FamilySize, IsAlone | **0.77511** |
+| 6 | XGBoost | `colsample_bytree=0.8, learning_rate=0.01, max_depth=3, n_estimators=300, subsample=1.0` | + Title, FamilySize, IsAlone, CV selection | **0.77990** |
 
 ## Dataset
 
@@ -21,11 +26,14 @@ A machine learning model to predict passenger survival on the Titanic, built for
 |---------|-------------|
 | `Pclass` | Passenger class (1st, 2nd, 3rd) |
 | `Sex` | Gender (encoded: male=0, female=1) |
-| `Age` | Age in years (missing values filled with mean) |
+| `Age` | Age in years (missing values filled with title-group median) |
 | `SibSp` | Number of siblings/spouses aboard |
 | `Parch` | Number of parents/children aboard |
 | `Fare` | Ticket fare |
 | `Embarked` | Port of embarkation (C=0, Q=1, S=2) |
+| `Title` | Extracted from Name (Mr=0, Miss=1, Mrs=2, Master=3, Rare=4) |
+| `FamilySize` | SibSp + Parch + 1 |
+| `IsAlone` | 1 if FamilySize == 1, else 0 |
 
 ## Models
 
@@ -36,7 +44,7 @@ Four models are trained and tuned via `GridSearchCV` (5-fold CV). The best perfo
 | Random Forest | `n_estimators`, `max_depth`, `min_samples_split`, `min_samples_leaf`, `max_features` | 162 |
 | Logistic Regression | `C`, `penalty`, `solver` | 18 |
 | XGBoost | `n_estimators`, `max_depth`, `learning_rate`, `subsample`, `colsample_bytree` | 108 |
-| SVM | `C`, `kernel`, `gamma` | 20 |
+| SVM | `C`, `kernel`, `gamma` | 5 |
 
 ## Files
 
